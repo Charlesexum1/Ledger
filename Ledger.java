@@ -5,7 +5,7 @@ public class Ledger {
 	private int maxSales;
 	private int salesMade;
 	private double[] sale;
-	
+		
 	private Ledger(int max) {
 		sale = new double[max];
 		maxSales = max;
@@ -27,26 +27,20 @@ public class Ledger {
 			total += sale[x];
 			}
 		return total;	
-		}	
-	private void getAverageSale() {
-		double average = 0;
-		double total = 0;
+		}
+	private double getAverageSale() {
+		return getSales() / getSalesMade();
+		}
+	private int getSalesAboveX(double x) {
 		int count = 0;
-		
-		for (int x = 0; x < sale.length; x++) {
-			if ((sale[x] == 0)) {
-				break;
-				}
-			else {
-				total += sale[x];
+		for (int y = 0; y < sale.length; y++) {
+			if (sale[y] > x) {
 				count++;
-				}					
+				}
 			}
-		average = total / sale.length;
-		System.out.println(average);	
+		return count;	
 		}	
-		
-		
+			
 	public static void main(String[] args) {
 		Ledger demo = new Ledger(5);
 		demo.addSale(10.00);
@@ -54,7 +48,8 @@ public class Ledger {
 		demo.addSale(1.00);
 		System.out.println(demo.getSalesMade());
 		System.out.println(demo.getSales());
-		demo.getAverageSale();
+		System.out.println(demo.getAverageSale());
+		System.out.println(demo.getSalesAboveX(1.40));
 		
 		
 		}
